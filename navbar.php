@@ -25,12 +25,24 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <a class="button is-primary" href="./register.php">
+          <?php 
+           ob_start();
+          
+          if(!isset($_SESSION["username"])){
+            echo " <a class='button is-primary' href='./register.php'>
             <strong>Sign up</strong>
           </a>
-          <a class="button is-light" href="./login.php">
+          <a class='button is-light' href='./login.php'>
             Log in
-          </a>
+          </a>";
+      } else{
+        echo " <a class='button is-primary' href='./logout.php'>
+        <strong>Logout</strong>
+      </a>";
+      }
+
+      ?>
+         
         </div>
       </div>
     </div>

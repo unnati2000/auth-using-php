@@ -7,6 +7,22 @@
     <title>Document</title>
 </head>
 <body>
+    <?php
+
+    ob_start();
+    session_start();
+
+    include_once "./db.php";
+
+   
+
+    if(!$_SESSION["username"]){
+        header("Location: login.php");
+    }
+    ?>
+     <?php include "./navbar.php" ?>
+
+    <h1 class="is-title-h1">Hello, <?php echo $_SESSION["username"] ?></h1>
     
 </body>
 </html>
