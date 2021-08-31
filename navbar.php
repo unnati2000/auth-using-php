@@ -11,7 +11,7 @@
   
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <a class="navbar-item" href="https://bulma.io">
+    <a class="navbar-item">
       <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
     </a>
 
@@ -28,7 +28,7 @@
           <?php 
            ob_start();
           
-          if(!isset($_SESSION["username"])){
+          if(!isset($_SESSION["email"])){
             echo " <a class='button is-primary' href='./register.php'>
             <strong>Sign up</strong>
           </a>

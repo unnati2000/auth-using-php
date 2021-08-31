@@ -55,7 +55,7 @@
                     $findUser = mysqli_query($connection, $query);
                     $resultantUser = mysqli_fetch_assoc($findUser);
         
-                    if($user){
+                    if($resultantUser){
                         $error = "User already exists";
                     }
                     $password = md5($password);
@@ -63,6 +63,7 @@
                     $insertUser = mysqli_query($connection, $query);
         
                     $_SESSION['username'] = $username;
+                    $_SESSION['email'] = $email;
                     header("location: home.php");
             
            }
@@ -74,6 +75,7 @@
 
     <?php include "./navbar.php" ?> 
     <form class="card m-3 p-3 m-5" action="./register.php" method="POST">
+    
         <h1 class="title is-1 has-text-center">Register Here</h1>
         <input class="input is-primary mt-2" type="text" name="username" placeholder="Username">
         <?php if($usernameErrorMsg!="") echo "<p class='is-size-6 is-danger is-light has-text-danger'>$usernameErrorMsg</p>" ?>
