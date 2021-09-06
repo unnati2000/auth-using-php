@@ -25,6 +25,7 @@
         if(isset($_POST["submit"])){
 
         // username
+        
            $username = mysqli_real_escape_string($connection, $_POST["username"]);
            $email = mysqli_real_escape_string($connection, $_POST["email"]);
            $password = mysqli_real_escape_string($connection, $_POST["password"]);
@@ -51,21 +52,20 @@
            }
 
            if($error == "" && $emailErrorMsg == "" && $passwordErrorMsg == "" && $confirmPasswordErrorMsg == ""){
-            $query = "SELECT * FROM auth WHERE email = '$email'";
-                    $findUser = mysqli_query($connection, $query);
-                    $resultantUser = mysqli_fetch_assoc($findUser);
+            $query = "SELECT * FROM users WHERE email = '$email'";
+            $findUser = mysqli_query($connection, $query);
+            $resultantUser = mysqli_fetch_assoc($findUser);
         
                     if($resultantUser){
                         $error = "User already exists";
                     }
                     $password = md5($password);
-                    $query = "INSERT INTO auth (username, email, password) VALUES('$username', '$email', '$password')";
+                    $query = "INSERT INTO users (username, email, password) VALUES('$username', '$email', '$password')";
                     $insertUser = mysqli_query($connection, $query);
         
                     $_SESSION['username'] = $username;
                     $_SESSION['email'] = $email;
                     header("location: home.php");
-            
            }
 
         }
@@ -74,23 +74,23 @@
 
 
     <?php include "./navbar.php" ?> 
-    <form class="card m-3 p-3 m-5" action="./register.php" method="POST">
+    <form class="card m-3 p-6 m-5 container mx-auto" action="./register.php" method="POST">
     
         <h1 class="title is-1 has-text-center">Register Here</h1>
-        <input class="input is-primary mt-2" type="text" name="username" placeholder="Username">
+        <input class="input is-primary mt-4" type="text" name="username"  placeholder="Username">
         <?php if($usernameErrorMsg!="") echo "<p class='is-size-6 is-danger is-light has-text-danger'>$usernameErrorMsg</p>" ?>
         
-        <input class="input is-primary mt-2" type="email" name="email" placeholder="Email">
+        <input class="input is-primary mt-4" type="email" name="email"  placeholder="Email">
         <?php if($emailErrorMsg!="") echo "<p class='is-size-6 is-danger is-light has-text-danger'>$emailErrorMsg</p>" ?>
         
 
-        <input class="input is-primary mt-2" type="password" name="password" placeholder="Password">
+        <input class="input is-primary mt-4" type="password" name="password" placeholder="Password">
         <?php if($passwordErrorMsg!="") echo "<p class='is-size-6 is-danger is-light has-text-danger'>$passwordErrorMsg</p>" ?>
         
-        <input class="input is-primary mt-2" type="password" name="confirm-password" placeholder="Confirm Password">
+        <input class="input is-primary mt-4" type="password" name="confirm-password" placeholder="Confirm Password">
         <?php if($confirmPasswordErrorMsg!="") echo "<p class='is-size-6 is-danger is-light has-text-danger'>$confirmPasswordErrorMsg</p>" ?>
         
-        <button type="submit" name="submit" class="button is-primary mt-2">Register</button>
+        <button type="submit" name="submit" class="button is-primary mt-4">Register</button>
         <p class="mt-2 text-center">Already have an account ? <a href="./login.php">Login</a></p> 
     </form>
 

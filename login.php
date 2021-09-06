@@ -37,7 +37,7 @@
 
             $password = md5($password);
              
-            $query = "SELECT * FROM auth WHERE email = '$email' AND password='$password'";
+            $query = "SELECT * FROM users WHERE email = '$email' AND password='$password'";
             $find_user = mysqli_query($connection, $query);
 
             if(mysqli_num_rows($find_user) == 1){
@@ -60,19 +60,19 @@
 
 ?>
 <?php include "./navbar.php" ?> 
-    <form class="card m-3 p-3 m-5" action="./login.php" method="POST">
-        <h1 class="title is-1 has-text-center">Login Here</h1>
 
+    <form class="card m-3 p-6 m-5 container  mx-auto" action="./login.php" method="POST">
+        <h1 class="title is-1 has-text-center has-text-black">Login Here</h1>
         <?php if($error!="") echo " <div class='button is-danger is-light'>$error</div>" ?>
-        <input class="input is-primary mt-2" name="email" type="email" placeholder="Email">
+        <input class="input is-primary mt-4"  name="email" type="email" placeholder="Email">
         <?php if($emailErrorMsg!="") echo "<p class='is-size-6 is-danger is-light has-text-danger'>$emailErrorMsg</p>" ?>
         
-        <input class="input is-primary mt-2" name="password" type="password" placeholder="Password">
+        <input class="input is-primary mt-4"  name="password" type="password" placeholder="Password">
         <?php if($passwordErrorMsg!="") echo "<p class='is-size-6 is-danger is-light has-text-danger'>$passwordErrorMsg</p>" ?>
 
-        <button class="button is-primary mt-2" type="submit" name="submit">Login</button>
+        <button class="button is-primary mt-4" type="submit" name="submit">Login</button>
         <p>Don't have an account? <a href="./register.php">Register here</a></p>
     </form>
-   
+
 </body>
 </html>
